@@ -1,0 +1,42 @@
+{% extends 'voting/base.html' %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock title %}
+
+{% block content %}
+    <h1 class="text-center mb-5">Welcome to the College Voting System</h1>
+    {% if user.is_authenticated %}
+    <div class="d-flex justify-content-center">
+        <a class="text-center mb-5" href="{% url 'vote' %}" style="font-size: 20px;">Click Here to Cast Your Vote</a>
+    </div>
+    
+    {%endif%}
+    <div class="row">
+        <div class="col-md-10">
+            <div class="row mt-4">
+                
+
+                {% for party in parties %}
+                    <div class="col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
+                        <div class="card" style="background-color: #14da3c;">
+                            <div class="first-content" >
+                                <div class="text-center" >
+                                    {% if party.logo %}
+                                        <img class="rounded-circle article-img" src="{{ party.logo.url }}">
+                                    {% endif %}
+                                    <h2>{{ party.name }}</h2>
+                                    <p><strong>President:</strong> {{ party.president }}</p>
+                                    <p><strong>Vice President:</strong> {{ party.vicepresident }}</p>
+                                </div>
+                            </div>
+                            <div class="second-content" style="background-color: #467500;">
+                                <span>{{ party.propaganda }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

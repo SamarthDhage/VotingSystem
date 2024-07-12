@@ -1,0 +1,21 @@
+{% extends 'voting/base.html' %}
+
+{% block content %}
+  <h2>Election Results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Party</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for party in parties %}
+        <tr>
+          <td>{{ party.name }}</td>
+          <td>{{ party.votes }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

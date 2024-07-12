@@ -1,0 +1,32 @@
+{% extends 'voting/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Add a New Party</h2>
+    <form class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <span class="input-span">
+            <label for="id_name" class="label">Name</label>
+            {{ form.name }}
+        </span>
+        <span class="input-span">
+            <label for="id_propaganda" class="label">Propaganda</label>
+            {{ form.propaganda }}
+        </span>
+        <span class="input-span">
+            <label for="id_logo" class="label">Logo</label>
+            {{ form.logo }}
+        </span>
+        <span class="input-span">
+            <label for="id_president" class="label">President</label>
+            {{ form.president }}
+        </span>
+        <span class="input-span">
+            <label for="id_vicepresident" class="label">Vice President</label>
+            {{ form.vicepresident }}
+        </span>
+
+        <input class="submit" type="submit" value="Save Party" />
+    </form>
+</div>
+{% endblock %}

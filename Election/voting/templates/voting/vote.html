@@ -1,0 +1,26 @@
+{% extends 'voting/base.html' %}
+
+{% block content %}
+  <h2>Vote</h2>
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% if user_vote %}
+    <p>You have already voted for {{ user_vote.party.name }}.</p>
+  {% else %}
+    <form method="post">
+      {% csrf_token %}
+      {% for party in parties %}
+        <div>
+          <input type="radio" id="party{{ party.id }}" name="party_id" value="{{ party.id }}">
+          <label for="party{{ party.id }}">{{ party.name }}</label>
+        </div>
+      {% endfor %}
+      <button type="submit">Vote</button>
+    </form>
+  {% endif %}
+{% endblock %}
