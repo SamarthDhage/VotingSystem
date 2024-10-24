@@ -40,12 +40,12 @@ def vote(request):
 
 @login_required
 def results(request):
-    #if not request.user.is_superuser:
-    #messages.warning(request, 'You do not have permission to check the results NOW!!!')
-    #return redirect('home')
-    
-    parties = Party.objects.all()
-    context = {
-        'parties': parties
-    }
-    return render(request, 'voting/results.html', context)
+    if not request.user.is_superuser:
+        messages.warning(request, 'You do not have permission to check the results NOW!!!')
+        return redirect('home')
+    else:
+        parties = Party.objects.all()
+        context = {
+            'parties': parties
+        }
+        return render(request, 'voting/results.html', context)
